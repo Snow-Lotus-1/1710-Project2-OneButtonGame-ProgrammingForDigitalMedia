@@ -48,13 +48,13 @@ class Parallaxer
     }
     
     void init() {     
-      //define som variables for the prallaxer
+      //define some variables for the prallaxer
       spriteWidth = img.width;
       startX = position.x;
       position2 = new PVector(startX + spriteWidth, 0);
       
       //when there is a second img, run this code
-      //if statment here so no problems are caused when first instructir is used
+      //if statment here so no problems are caused when first constructor is used
       if (img2 != null)
       {
         endX = startX - spriteWidth*2;
