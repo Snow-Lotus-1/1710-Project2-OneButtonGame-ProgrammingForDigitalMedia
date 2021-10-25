@@ -1,3 +1,4 @@
+//this class is based off of Meng Jia's predator game example
 class Energy {
   
   PVector position, position2, positionCore;

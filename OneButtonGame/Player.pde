@@ -1,3 +1,5 @@
+//based off of Meng Jia's predator game example and the gravity example from the Fox Gieg website 
+//https://github.com/eecs17xx/eecs1710-2021f/tree/main/Week07/Gravity01
 import gifAnimation.*;
 
 class Player {
