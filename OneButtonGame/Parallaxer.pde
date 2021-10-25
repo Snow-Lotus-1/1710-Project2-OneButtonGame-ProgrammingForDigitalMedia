@@ -6,6 +6,7 @@ import gifAnimation.*;
 class Parallaxer 
 {
   float speed;
+  //switched PImages for Gifs
   Gif img, img2 = null, img3 = null;
   float spriteWidth;
   float startX, endX;
@@ -26,6 +27,8 @@ class Parallaxer
     //constructor for this project
     Parallaxer(Gif imgIn1, Gif imgIn2, float speedIn, PVector positionIn)
     {
+      //takes in two images/gifs but uses 3
+      //so there is a smooth transitions between the two images/gifs
       img = imgIn1;
       img.loop();
       img.play();
@@ -45,9 +48,13 @@ class Parallaxer
     }
     
     void init() {     
+      //define som variables for the prallaxer
       spriteWidth = img.width;
       startX = position.x;
       position2 = new PVector(startX + spriteWidth, 0);
+      
+      //when there is a second img, run this code
+      //if statment here so no problems are caused when first instructir is used
       if (img2 != null)
       {
         endX = startX - spriteWidth*2;
@@ -55,25 +62,29 @@ class Parallaxer
       }
       else
       {
+        //all crowds have widths less than 500, including bgCrowds
         if (!(spriteWidth<500))
         {
+          //makes sure the parallaxer makes it across the screen flawlessly 
           endX = startX - spriteWidth; 
         }
         else
         {
+          //otherwise run the normal code for the background
           endX = startX - width - spriteWidth;
         }
       }
     }
    
     void update() {
-      
+      //moves the parallaxers 
       position.x -= speed;
       
       if (position.x < endX) 
       {
           position = new PVector(startX, position.y);
       } 
+      //honestly don't need this becuase parallaxer only move one way, but kept it here anyway
       else if (position.x > startX) 
       {
           position = new PVector(endX, position.y);
@@ -81,10 +92,12 @@ class Parallaxer
     }
     
     void draw() {
+      //draw the parallaxer
       pushMatrix();
       translate(position.x, position.y);
       image(img, 0, 0);
       
+      //checks if there is a second img
       if (img2 != null)
       {
         image(img2, position2.x, position2.y);

@@ -76,12 +76,18 @@ void draw() {
   scale(height / background1.height);
   delta = abs(5) * s;
   
+  //runs furest background at 1
   bg.speed = delta;
   bg.run();
+  //runs inbetween background at 1.2
   c1.speed = delta * 1.2;
   c1.run();
+  //and runs closest background at 1.5
   c2.speed = delta * 1.5;
   c2.run();
+  //you get this cool effect with the diffrents speeds, and the backgrounds further back are darker
+  
+  //if a c3 exists in runs a 2 times the normal speed of the background
   if (c3 != null)
   {
     c3.speed = delta * 2;
@@ -89,16 +95,19 @@ void draw() {
   }
   popMatrix();
   
+  //rules of the game, use space to jump around and collect energy, the during second phase you dodge energy for as long as you can for a high score
   textFont(eCount,20);
   fill(255);
   if (!player.cMode){text("Press 'space' to jump, collect 15 energy to unlock Supercharged mode. Energy Count: " + player.eCount,5,18);}
   else {
     if (player.life <= 0)
     {
+      //when the game is over, score is displayed and the game won't increase in difficulty, but you can still play
       text("Game Over: You Overloaded and Ran Out of Lives                          Score: " + player.score,5,18);      
     }
     else
     {
+      //explains new rules, and displays life and score
       text("Supercharged mode, press 'space' midair to double jump.    Life: " + player.life +"   Score: " + player.score + "\nCrashing into energy or ceiling will loose life.",5,18);    
     }
   }
@@ -106,6 +115,7 @@ void draw() {
   player.run();
   energy.run();
   
+  //if the player is not jumping turn off gravity, if they are jumping reverse gravity
   if(player.jumping == false)
   {
     gravity += gravityDelta;
@@ -115,5 +125,6 @@ void draw() {
     gravity -= gravityDelta;
   }
   
+  //get framerate
   surface.setTitle("" + frameRate);
 }

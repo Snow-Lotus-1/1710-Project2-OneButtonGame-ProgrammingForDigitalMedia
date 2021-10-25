@@ -33,25 +33,27 @@ class Energy {
       
       if (position.x < endX) 
       {
-          if (!player.cMode)
-          {
-            position = new PVector(startX, random(275, height - 150));
-          }
-          else
-          {
-            position = new PVector(startX, random(height - 150));
-          }
+        //during cMode, energy can appear at any height, othewise it's in jumping range
+        if (!player.cMode)
+        {
+          position = new PVector(startX, random(275, height - 150));
+        }
+        else
+        {
+          position = new PVector(startX, random(height - 150));
+        }
       } 
       else if (position.x > startX) 
       {
           position = new PVector(endX, position.y);
       }
-      
+      //get the center of the energy sphere so player can get it 
       positionCore = new PVector(position.x + spriteWidth/6, position.y + spriteWidth/6);
   }
   
   void draw() {
     if (!alive) {
+      //when the energy resets it's goes back to the rightside of the screen
       position.x = width;
       if (!player.cMode)
       {
@@ -90,6 +92,7 @@ class Energy {
   {
     //gif link
     //https://www.herculeanpixel.com/images/news/ppb_shock.gif
+    //https://www.herculeanpixel.com/news/topic/pixel-art?page=9
     sparkFrame[0] = loadImage("spark/spark1.png");
     sparkFrame[1] = loadImage("spark/spark2.png");
     sparkFrame[2] = loadImage("spark/spark3.png");
@@ -103,10 +106,12 @@ class Energy {
     sparkFrame[10] = loadImage("spark/spark11.png");
     sparkFrame[11] = loadImage("spark/spark12.png");
     
+    //resizes images
     for(int i=0; i<sparkFrame.length; i++){
       sparkFrame[i].resize(sparkFrame[i].width/3, sparkFrame[i].height/3);
     }
   }
+  //switches spark out for each frame baised on counters
   void switchSparkFrame()
   {
     if (aniSparkFrame > 11)
