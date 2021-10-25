@@ -1,8 +1,14 @@
+//based off of the gravity example from the Fox Gieg website
+//https://github.com/eecs17xx/eecs1710-2021f/tree/main/Week07/Gravity01
 import gifAnimation.*;
 
+//player, aka the avatar
 Player player;
+//the energy that needs to be collected then avoided
 Energy energy;
+//bg is the main background, c1 and c2 give a more filled out feel to the background, c3 adds a bit of randomness to the background so it's not always the same
 Parallaxer bg, c1, c3, c2;
+//6 gifs used to make the primary background
 Gif background1, background2, bgCrowd1, bgCrowd2, bgCrowd3, bgCrowd4;
 Gif[] crowd = new Gif[10];
 
@@ -44,6 +50,7 @@ void setup() {
   crowd[3] = new Gif(this, "crowd/crowd4.gif"); crowd[4] = new Gif(this, "crowd/crowd5.gif"); crowd[5] = new Gif(this, "crowd/crowd6.gif");
   crowd[6] = new Gif(this, "crowd/crowd7.gif"); crowd[7] = new Gif(this, "crowd/crowd8.gif"); crowd[8] = new Gif(this, "crowd/crowd9.gif");
   crowd[9] = new Gif(this, "crowd/crowd10.gif");
+  //selects a random gif out of the 10
   Gif crowdR = crowd[int(random(crowd.length-1))];
   c3 = new Parallaxer(crowdR, delta*2, new PVector(width, height - 310 - crowdR.height));
   player = new Player(width/2, height/2);
@@ -84,15 +91,15 @@ void draw() {
   
   textFont(eCount,20);
   fill(255);
-  if (!player.cMode){text("Press 'space' to jump, collect energy to unlock Supercharged mode       Energy Count: " + player.eCount,5,18);}
+  if (!player.cMode){text("Press 'space' to jump, collect 15 energy to unlock Supercharged mode. Energy Count: " + player.eCount,5,18);}
   else {
     if (player.life <= 0)
     {
-      text("Game Over: You Overloaded                                                            Score: " + player.score,5,18);      
+      text("Game Over: You Overloaded and Ran Out of Lives                          Score: " + player.score,5,18);      
     }
     else
     {
-      text("Supercharged mode, press 'space' midar to double jump.    Life: " + player.life +"   Score: " + player.score + "\nCrashing into energy or ceiling will loose life.",5,18);    
+      text("Supercharged mode, press 'space' midair to double jump.    Life: " + player.life +"   Score: " + player.score + "\nCrashing into energy or ceiling will loose life.",5,18);    
     }
   }
   

@@ -116,7 +116,7 @@ class Player {
   
   void charged()
   {
-    if (eCount >= 10)//change to 30 later
+    if (eCount >= 15)
     {
       s = s + 0.0005;
       energy.speed = random(10, 35);
